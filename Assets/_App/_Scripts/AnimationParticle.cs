@@ -6,7 +6,7 @@ public class AnimationParticle : MonoBehaviour
 {
     [SerializeField] private Animator animator;
 
-    public void OnActivate()
+    public virtual void OnActivate(Vector2 direction)
     {
         animator.Play("Particle");
     }

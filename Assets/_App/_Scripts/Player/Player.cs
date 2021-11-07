@@ -23,11 +23,30 @@ public class Player : MonoBehaviour
 
     [Header("Input.")]
     [SerializeField] private float controllerAxisMin = .35f;
-    bool jumpButtonReleased = false;
     bool jumpButtonPressed = false;
 
     [Header("Object Pools.")]
     [SerializeField] private ObjectPool jumpParticleObjectPool;
+
+    [Header("Weapons.")]
+    [SerializeField] private float timeForSingleButtonPress = .1f;
+    private float timerForSingleButtonPress = 0;
+    [SerializeField] private FlameThrower flameThrower;
+    bool fireButtonPressed;
+    bool fireButtonReleased;
+    bool knifeButtonPressed;
+    [SerializeField] private float timeBetweenKnifeShots;
+    private float timerBetweenKnifeShots = 0;
+    private string currentPosH;
+    private string currentPosV;
+    [SerializeField] private Transform flameThrowerPosMiddleLeft;
+    [SerializeField] private Transform flameThrowerPosMiddleRight;
+    [SerializeField] private Transform flameThrowerPosTopLeft;
+    [SerializeField] private Transform flameThrowerPosTopRight;
+    [SerializeField] private Transform flameThrowerPosDownLeft;
+    [SerializeField] private Transform flameThrowerPosDownRight;
+    [SerializeField] private ObjectPool knifeFireParticlePool;
+    [SerializeField] private ObjectPool knifePool;
 
     // Physics
     private Vector3 velocity;
@@ -50,7 +69,7 @@ public class Player : MonoBehaviour
     // Components
     private Controller2D characterController;
 
-    //
+    // Varibles that need to be accessed everywhere in this class
     float inputX;
     float inputY;
     int right;
@@ -64,7 +83,7 @@ public class Player : MonoBehaviour
     SpriteRenderer spriteRenderer;
 
     // Buildin methods
-    private void Start()
+    private void Awake()
     {
         // Calculating some stats
         acceleration = maxMoveSpeed / timeTillFullSpeed;
@@ -72,7 +91,10 @@ public class Player : MonoBehaviour
 
         gravity = -2 * jumpHeight / (timeToReachJumpApex * timeToReachJumpApex);
         jumpPower = 2 * jumpHeight / timeToReachJumpApex;
+    }
 
+    private void Start()
+    {
         currentState = State.Moving;
         characterController = GetComponent<Controller2D>();
         animator = GetComponent<CustomPlayerAnimator>();
@@ -83,7 +105,11 @@ public class Player : MonoBehaviour
     {
         // Input checking
         jumpButtonPressed = Input.GetButtonDown("Jump");
-        jumpButtonReleased = Input.GetButtonUp("Jump");
+
+        fireButtonPressed = Input.GetButton("Fire2");
+        fireButtonReleased = Input.GetButtonUp("Fire2");
+
+        knifeButtonPressed = Input.GetButtonDown("Fire1");
 
         inputX = Input.GetAxisRaw("Horizontal"); //.Horizontal movement
         inputY = Input.GetAxisRaw("Vertical"); //.Horizontal movement
@@ -105,6 +131,7 @@ public class Player : MonoBehaviour
         CheckIfAnimationShouldBeJumping();
         CheckIfMovingOnGround();
         FlipAnimationRightWay();
+        timerBetweenKnifeShots += Time.deltaTime;
 
         switch (currentState)
         {
@@ -127,6 +154,8 @@ public class Player : MonoBehaviour
                 }
 
                 maxHeightReached = Mathf.Max(transform.position.y, maxHeightReached);
+
+                CheckIfFiring();
 
                 oldVelocity = velocity;
                 velocity.y += gravity * Time.fixedDeltaTime;
@@ -159,6 +188,8 @@ public class Player : MonoBehaviour
                     CheckJumpInput(true);
                 }
 
+                CheckIfFiring();
+
                 velocity.x = currentMoveSpeed;
 
                 oldVelocity = velocity;
@@ -177,6 +208,33 @@ public class Player : MonoBehaviour
         if (isGrounded) { velocity.y = 0; }
     }
 
+    private void FireKnife()
+    {
+        //Particle First.
+        GameObject particle = knifeFireParticlePool.GetPooledObject();
+        if (particle != null)
+        {
+            particle.SetActive(true);
+            particle.transform.position = new Vector2(flameThrower.transform.position.x + Random.Range(.12f,.12f), flameThrower.transform.position.y + Random.Range(.12f, .12f));
+            particle.transform.rotation = flameThrower.transform.rotation;
+            particle.GetComponent<AnimationParticle>().OnActivate(new Vector2(0, 0));
+        }
+
+        // Knife
+        GameObject knife = knifePool.GetPooledObject();
+        if (knife != null)
+        {
+            knife.SetActive(true);
+            knife.transform.position = new Vector2(flameThrower.transform.position.x + Random.Range(.12f, .12f), flameThrower.transform.position.y + Random.Range(.12f, .12f));
+            knife.transform.rotation = flameThrower.transform.rotation;
+
+            Vector2 dir = GetFireDirection();
+
+            knife.GetComponent<Knife>().OnActivate(dir);
+
+        }
+    }
+
     private void SpawnJumpParticle()
     {
         GameObject particle = jumpParticleObjectPool.GetPooledObject();
@@ -185,7 +243,7 @@ public class Player : MonoBehaviour
             particle.SetActive(true);
             particle.transform.position = transform.position;
             particle.transform.rotation = transform.rotation;
-            particle.GetComponent<AnimationParticle>().OnActivate();
+            particle.GetComponent<AnimationParticle>().OnActivate(new Vector2(0,0));
         }
     }
 
@@ -267,6 +325,11 @@ public class Player : MonoBehaviour
     private void IncreaseDoubleJumpTimer()
     {
         doubleJumpTimer += Time.deltaTime;
+    }
+
+    private void IncreaseTimerForSingleButtonPress()
+    {
+        timerForSingleButtonPress += Time.deltaTime;
     }
 
     private void ApplyFriction()
@@ -367,6 +430,106 @@ public class Player : MonoBehaviour
         else if (rightLeft == -1)
         {
             spriteRenderer.flipX = true;
+        }
+    }
+
+    private Vector2 GetFireDirection()
+    {
+        int x = 1;
+        if (spriteRenderer.flipX)
+        {
+            x = -1;
+        }
+        if (GetUpDown() != 0)
+        {
+            x = 0;
+        }
+        return new Vector2(x,GetUpDown());
+    }
+
+    private void CheckIfFiring()
+    {
+        if(knifeButtonPressed && timerBetweenKnifeShots > timeBetweenKnifeShots)
+        {
+            SetFirePosition();
+            if (isGrounded)
+            {
+                currentMoveSpeed = 0;
+            }
+            timerBetweenKnifeShots = 0;
+            FireKnife();
+        }
+
+        if (fireButtonPressed)
+        {
+            SetFirePosition();
+            if (timerForSingleButtonPress > timeForSingleButtonPress)
+            {
+                flameThrower.FireFlameThrower(GetFireDirection());
+                if (isGrounded)
+                {
+                    currentMoveSpeed = 0;
+                }
+            }
+            else
+            {
+                IncreaseTimerForSingleButtonPress();
+            }
+        }
+        else if (fireButtonReleased)
+        {
+            timerForSingleButtonPress = 0;
+        }
+    }
+
+    private void SetFirePosition()
+    {
+        string positionH;
+        string positionV = "Middle";
+
+        int ud = GetUpDown();
+        if (ud == 1)
+        {
+            //Up
+            positionV = "Up";
+        }
+        else if (ud == -1)
+        {
+            //Down
+            positionV = "Down";
+        }
+
+        if (!spriteRenderer.flipX)
+        {
+            positionH = "Right";
+        }
+        else
+        {
+            positionH = "Left";
+        }
+
+        string pos = positionV + positionH;
+
+        switch (pos)
+        {
+            case "UpLeft":
+                flameThrower.transform.position = flameThrowerPosTopLeft.position;
+                break;
+            case "DownLeft":
+                flameThrower.transform.position = flameThrowerPosDownLeft.position;
+                break;
+            case "MiddleLeft":
+                flameThrower.transform.position = flameThrowerPosMiddleLeft.position;
+                break;
+            case "UpRight":
+                flameThrower.transform.position = flameThrowerPosTopRight.position;
+                break;
+            case "DownRight":
+                flameThrower.transform.position = flameThrowerPosDownRight.position;
+                break;
+            case "MiddleRight":
+                flameThrower.transform.position = flameThrowerPosMiddleRight.position;
+                break;
         }
     }
 }
