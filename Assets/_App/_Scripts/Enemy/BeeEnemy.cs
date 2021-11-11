@@ -20,7 +20,8 @@ public class BeeEnemy : Enemy
 
     [Header("Player Stats")]
     [SerializeField] private float floatAbovePlayerXSpeed;
-    [SerializeField] private float startingAttackSpeed;
+    [SerializeField] private float originalStartingAttackSpeed;
+    private float startingAttackSpeed;
     [SerializeField] float floatAbovePlayerTime = 1f; // Float Above player timers
     private float floatAbovePlayerTimer = 0f;
 
@@ -39,15 +40,22 @@ public class BeeEnemy : Enemy
 
     public override void OnSpawn()
     {
-        timeSwitchedBeforeAttack = 1;// Random.Range(3,6);
-        timesSwitched = 0;
+        Debug.Log("On Spawn called from Bee!");
 
         base.OnSpawn();
-        currentState = state.FloatAbovePlayer;
+
+        floatAbovePlayerTimer = 0;
+
+        timeSwitchedBeforeAttack = Random.Range(0,2);
+        timesSwitched = 0;
+
+        startingAttackSpeed = originalStartingAttackSpeed;
+
+        animator.SetAnimation("BeeIdle");
         controller.SetSpeed(floatAbovePlayerXSpeed);
 
         float x = 0;
-        float y = -0.02f;
+        float y = Random.Range(-0.05f, 0.05f);
 
         //Check if player is left or right.
         if(playerPosition.position.x > transform.position.x)
@@ -64,8 +72,12 @@ public class BeeEnemy : Enemy
         currentVector2 = new Vector2(x,y);
     }
 
-    private void Update()
+    public override void Update()
     {
+        base.Update();
+
+        SetSpriteRightDirection(currentVector2);
+
         switch (currentState)
         {
             case state.FloatAbovePlayer:
@@ -83,14 +95,16 @@ public class BeeEnemy : Enemy
 
                 if(floatAbovePlayerTimer > floatAbovePlayerTime)
                 {
-                    if(timesSwitched < timeSwitchedBeforeAttack)
+                    if(timesSwitched > timeSwitchedBeforeAttack)
                     {
                         //Attack!
                         StartCoroutine(WaitBeforeAttack());
                         currentState = state.BeforeAttack;
+                        animator.SetAnimation("BeeAngry");
                         currentVector2 = new Vector2(0, 0);
                     } else
                     {
+                        timesSwitched++;
                         floatAbovePlayerTimer = 0;
                         SwitchDirection();
                         runTimer = false;
@@ -157,5 +171,11 @@ public class BeeEnemy : Enemy
             }
         }
         return b;
+    }
+
+    public override void OnDeath()
+    {
+        base.OnDeath();
+        currentState = state.FloatAbovePlayer;
     }
 }

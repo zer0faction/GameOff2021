@@ -48,6 +48,10 @@ public class Player : MonoBehaviour
     [SerializeField] private ObjectPool knifeFireParticlePool;
     [SerializeField] private ObjectPool knifePool;
 
+    [Header("Taking Damage")]
+    [SerializeField] private float invulnerabilityTime;
+    private bool canTakeDamage = true;
+
     // Physics
     private Vector3 velocity;
     private Vector3 oldVelocity;
@@ -99,6 +103,17 @@ public class Player : MonoBehaviour
         characterController = GetComponent<Controller2D>();
         animator = GetComponent<CustomPlayerAnimator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+
+        //Debug.Log("Gravity: " + gravity);
+        //Debug.Log("jumpPower: " + jumpPower);
+        //Debug.Log("acceleration: " + acceleration);
+        //Debug.Log("deceleration: " + deceleration);
+    }
+
+    private IEnumerator SetStateToMovingFromDamage()
+    {
+        yield return new WaitForSeconds(.25f);
+        currentState = State.Moving;
     }
 
     private void Update()
@@ -109,7 +124,11 @@ public class Player : MonoBehaviour
         fireButtonPressed = Input.GetButton("Fire2");
         fireButtonReleased = Input.GetButtonUp("Fire2");
 
-        knifeButtonPressed = Input.GetButtonDown("Fire1");
+        if (Input.GetButtonDown("Fire1"))
+        {
+            knifeButtonPressed = true;
+            StartCoroutine(SetButtonPressedToFalse());
+        }
 
         inputX = Input.GetAxisRaw("Horizontal"); //.Horizontal movement
         inputY = Input.GetAxisRaw("Vertical"); //.Horizontal movement
@@ -128,7 +147,7 @@ public class Player : MonoBehaviour
 
         // Double jump
         if (isGrounded) { canDoubleJump = true; doubleJumpTimer = 0; }
-        CheckIfAnimationShouldBeJumping();
+        
         CheckIfMovingOnGround();
         FlipAnimationRightWay();
         timerBetweenKnifeShots += Time.deltaTime;
@@ -136,6 +155,8 @@ public class Player : MonoBehaviour
         switch (currentState)
         {
             case State.Moving:
+
+                CheckIfAnimationShouldBeJumping();
 
                 HorizontalMovement(1, true, true);
 
@@ -146,8 +167,6 @@ public class Player : MonoBehaviour
 
                 CheckIfBumpingHead();
 
-                velocity.x = currentMoveSpeed;
-
                 if (!reachedApex && maxHeightReached > transform.position.y) //. Vertical movement. 
                 {
                     reachedApex = true;
@@ -157,19 +176,15 @@ public class Player : MonoBehaviour
 
                 CheckIfFiring();
 
+                velocity.x = currentMoveSpeed;
                 oldVelocity = velocity;
-                velocity.y += gravity * Time.fixedDeltaTime;
-
-                deltaPosition = (oldVelocity + velocity) * 0.5f * Time.fixedDeltaTime;
+                velocity.y += gravity * Time.deltaTime;
+                deltaPosition = (oldVelocity + velocity) * 0.5f * Time.deltaTime;
 
                 break;
             case State.Jumping:
 
-                if (characterController.collisions.above)
-                {
-                    velocity.y = 0;
-                    canDoubleJump = false;
-                }
+                CheckIfAnimationShouldBeJumping();
 
                 HorizontalMovement(0.018f, false, false);
 
@@ -191,14 +206,29 @@ public class Player : MonoBehaviour
                 CheckIfFiring();
 
                 velocity.x = currentMoveSpeed;
-
                 oldVelocity = velocity;
-                velocity.y += gravity * Time.fixedDeltaTime;
-
-                deltaPosition = (oldVelocity + velocity) * 0.5f * Time.fixedDeltaTime;
+                velocity.y += gravity * Time.deltaTime;
+                deltaPosition = (oldVelocity + velocity) * 0.5f * Time.deltaTime;
 
                 break;
             case State.TakingDamageKnockback:
+
+                CheckIfBumpingHead();
+
+                animator.ChangeAnimationState("TakeDamage", "TakeDamage");
+
+                if (isGrounded)
+                {
+                    // Landed again
+                    currentState = State.Moving;
+                    return; // ???
+                }
+
+                velocity.x = currentMoveSpeed;
+                oldVelocity = velocity;
+                velocity.y += gravity * Time.deltaTime;
+                deltaPosition = (oldVelocity + velocity) * 0.5f * Time.deltaTime;
+
                 break;
         }
 
@@ -215,7 +245,7 @@ public class Player : MonoBehaviour
         if (particle != null)
         {
             particle.SetActive(true);
-            particle.transform.position = new Vector2(flameThrower.transform.position.x + Random.Range(.12f,.12f), flameThrower.transform.position.y + Random.Range(.12f, .12f));
+            particle.transform.position = new Vector2(flameThrower.transform.position.x, flameThrower.transform.position.y + Random.Range(.12f, .12f));
             particle.transform.rotation = flameThrower.transform.rotation;
             particle.GetComponent<AnimationParticle>().OnActivate(new Vector2(0, 0));
         }
@@ -225,13 +255,12 @@ public class Player : MonoBehaviour
         if (knife != null)
         {
             knife.SetActive(true);
-            knife.transform.position = new Vector2(flameThrower.transform.position.x + Random.Range(.12f, .12f), flameThrower.transform.position.y + Random.Range(.12f, .12f));
+            knife.transform.position = new Vector2(flameThrower.transform.position.x, flameThrower.transform.position.y + Random.Range(.12f, .12f));
             knife.transform.rotation = flameThrower.transform.rotation;
 
             Vector2 dir = GetFireDirection();
 
             knife.GetComponent<Knife>().OnActivate(dir);
-
         }
     }
 
@@ -303,6 +332,7 @@ public class Player : MonoBehaviour
             {
                 JumpSide(false);
             }
+            return;
         }
     }
    
@@ -310,7 +340,7 @@ public class Player : MonoBehaviour
     {
         if (right != 0 || left != 0) //. Vertical movement speed
         {
-            currentMoveSpeed += (right - left) * acceleration * Time.deltaTime * multiplication;
+            currentMoveSpeed += (right - left) * acceleration * multiplication * Time.deltaTime;
             if (clamp)
             {
                 currentMoveSpeed = Mathf.Clamp(currentMoveSpeed, -maxMoveSpeed, maxMoveSpeed);
@@ -449,7 +479,7 @@ public class Player : MonoBehaviour
 
     private void CheckIfFiring()
     {
-        if(knifeButtonPressed && timerBetweenKnifeShots > timeBetweenKnifeShots)
+        if (knifeButtonPressed && timerBetweenKnifeShots > timeBetweenKnifeShots && !fireButtonPressed)
         {
             SetFirePosition();
             if (isGrounded)
@@ -530,6 +560,59 @@ public class Player : MonoBehaviour
             case "MiddleRight":
                 flameThrower.transform.position = flameThrowerPosMiddleRight.position;
                 break;
+        }
+    }
+
+    public void TakeDamage() //True = right
+    {
+        if (canTakeDamage)
+        {
+            canTakeDamage = false;
+
+            StartCoroutine(BlinkCharacter());
+            StartCoroutine(SetCanTakeDamageTrue());
+
+            //Health -- //TODO
+
+            currentState = State.TakingDamageKnockback;
+
+            if (spriteRenderer.flipX)
+            {
+                currentMoveSpeed = 0 + maxMoveSpeed * 1.2f;
+            }
+            else
+            {
+                currentMoveSpeed = 0 + maxMoveSpeed * -1.2f;
+            }
+
+            maxHeightReached = Mathf.NegativeInfinity;
+            velocity.y = jumpPower / 1.5f;
+            reachedApex = false;
+            canDoubleJump = false;
+        }
+    }
+
+    private IEnumerator SetCanTakeDamageTrue()
+    {
+        yield return new WaitForSeconds(invulnerabilityTime);
+        canTakeDamage = true;
+    }
+
+    private IEnumerator SetButtonPressedToFalse()
+    {
+        yield return new WaitForSeconds(.12f);
+        knifeButtonPressed = false;
+    }
+
+    private IEnumerator BlinkCharacter()
+    {
+        spriteRenderer.material.SetFloat("_FlashAmount", 1);
+        yield return new WaitForSeconds(.1f);
+        spriteRenderer.material.SetFloat("_FlashAmount", 0);
+        yield return new WaitForSeconds(.1f);
+        if (!canTakeDamage)
+        {
+            StartCoroutine(BlinkCharacter());
         }
     }
 }

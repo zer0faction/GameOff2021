@@ -7,6 +7,12 @@ TagManager:
   - Solid
   - KnifeDestroyedPool
   - Enemy
+  - FireParticle
+  - EnemyDeathLine
+  - SpawnerActivateCollider
+  - EnemySpawner
+  - Knife
+  - KilledEnemyParticle
   layers:
   - Default
   - TransparentFX
@@ -18,11 +24,11 @@ TagManager:
   - 
   - Solid
   - Enemy
-  - 
-  - 
-  - 
-  - 
-  - 
+  - FireParticle
+  - Player
+  - EnemyDeathLine
+  - SpawnerActivateCollider
+  - EnemySpawner
   - 
   - 
   - 
@@ -43,6 +49,9 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: BackBackground
+    uniqueID: 1649522853
     locked: 0
   - name: BackgroundTwo
     uniqueID: 2534680947

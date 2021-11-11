@@ -8,20 +8,52 @@ public class Enemy : MonoBehaviour
     [SerializeField] private int maxHealth;
     private int currentHealth;
 
+    [Header("Enemy Stats")]
+    public bool isBoss;
+    [HideInInspector] private float timeBetweenTakingFirethrowerDamage = .2f;
+    private bool canTakeDamageFromFireThrower = true;
+
+    [Header("Other gameobjects, components, etc.")]
+    [SerializeField] private LayerMask layerMask;
+    [SerializeField] private SpriteRenderer spriteRenderer;
+    public EnemyAnimator animator;
+    private ObjectPool onDeathParticlePool;
+
     // Other gameobjects
     [HideInInspector] public Transform playerPosition;
 
     // Build-In Methods
     private void Start()
     {
-        playerPosition = GameObject.Find("Player").transform;
+    }
 
-        OnSpawn(); // Weghalen deze shit!!!
+    public virtual void Update()
+    {
+        CheckCollisions();
+    }
+
+    // Other Methods
+
+    private void CheckCollisions()
+    {
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, new Vector2(.002f, .002f), 1, layerMask); //Distance = 2 Pixels
+        if (hit.collider != null)
+        {
+            GameObject target = hit.transform.gameObject;
+            if (target.CompareTag("Player"))
+            {
+                target.GetComponent<Player>().TakeDamage();
+            }
+        }
     }
 
     // Methods for Spawning/Despawning
     public virtual void OnSpawn()
     {
+        onDeathParticlePool = GameObject.FindGameObjectWithTag("KilledEnemyParticle").GetComponent<ObjectPool>();
+        canTakeDamageFromFireThrower = true;
+        spriteRenderer.material.SetFloat("_FlashAmount", 0);
+        playerPosition = GameObject.FindGameObjectWithTag("Player").transform;
         currentHealth = maxHealth;
     }
 
@@ -35,24 +67,68 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    public virtual void TakeDamage(int damage)
+    public IEnumerator SetCanTakeDamageFromFireThrowerTrue()
     {
-        RemoveHealth(damage);
+        yield return new WaitForSeconds(timeBetweenTakingFirethrowerDamage);
+        canTakeDamageFromFireThrower = true;
+    }
+
+    public virtual void TakeDamage(int damage, bool knife)
+    {
+        if (knife)
+        {
+            StartCoroutine(BlinkWhite());
+            RemoveHealth(damage);
+        } else
+        {
+            if (canTakeDamageFromFireThrower)
+            {
+                StartCoroutine(BlinkWhite());
+                canTakeDamageFromFireThrower = false;
+                StartCoroutine(SetCanTakeDamageFromFireThrowerTrue());
+                RemoveHealth(damage);
+            }
+        }
+    }
+
+    private IEnumerator BlinkWhite()
+    {
+        spriteRenderer.material.SetFloat("_FlashAmount", 1);
+        yield return new WaitForSeconds(.08f);
+        spriteRenderer.material.SetFloat("_FlashAmount", 0);
     }
 
     public Vector2 CalculateDirectionTowardsPlayer()
     {
-
         Vector2 v = playerPosition.position - transform.position;
         return v;
     }
 
-    // Methods that NEED to be overridden in enemy subclasses.
     public virtual void OnDeath()
     {
-        Debug.LogError("OnDeath() should not be called here.");
+        GameObject particle = onDeathParticlePool.GetPooledObject();
+        if (particle != null)
+        {
+            particle.SetActive(true);
+            particle.transform.position = transform.position;
+            particle.transform.rotation = transform.rotation;
+            particle.GetComponent<AnimationParticle>().OnActivate(new Vector2(0, 0));
+        }
+        gameObject.SetActive(false);
     }
 
+    public void SetSpriteRightDirection(Vector2 vector)
+    {
+        if(vector.x > 0)
+        {
+            spriteRenderer.flipX = false;
+        } else
+        {
+            spriteRenderer.flipX = true;
+        }
+    }
+
+    // Methods that NEED to be overridden in enemy subclasses.
     public virtual void OnDespawn()
     {
         Debug.LogError("OnDespawn() should not be called here.");

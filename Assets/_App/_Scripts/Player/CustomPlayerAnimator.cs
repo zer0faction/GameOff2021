@@ -46,6 +46,9 @@ public class CustomPlayerAnimator : MonoBehaviour
             case "Jump":
                 SwitchAnimationToJump(weaponDirection);
                 break;
+            case "TakeDamage":
+                animator.Play("TakeDamage");
+                break;
         }
     }
 

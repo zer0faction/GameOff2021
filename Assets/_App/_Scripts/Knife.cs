@@ -6,6 +6,7 @@ public class Knife : MonoBehaviour
 {
     private Vector2 velocity;
     [SerializeField] private float speed = 4;
+    [SerializeField] private int damage = 1;
 
     private ObjectPool objectPool;
 
@@ -68,17 +69,28 @@ public class Knife : MonoBehaviour
 
     private void CheckCollisions()
     {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, new Vector2(.2f,.2f), 1, layerMask); //Distance = 2 Pixels
-        Debug.DrawLine(transform.position, hit.point, Color.red);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, new Vector2(0.02f, 0.02f), 1, layerMask); //Distance = 2 Pixels
         if (hit.collider != null)
         {
-            Debug.Log("Not Null");
-            if (hit.transform.gameObject.CompareTag("Solid"))
-            {
-                Debug.Log("Wall hit! By Knife");
+            GameObject target = hit.transform.gameObject;
 
+            if (target.CompareTag("Solid"))
+            {
                 // On Wall hit
                 OnTargetHit();
+            }
+            else if (target.CompareTag("Enemy"))
+            {
+                Debug.Log("Hit an enemy!");
+                OnTargetHit();
+                target.GetComponent<Enemy>().TakeDamage(damage, true);
+            } else if (target.CompareTag("EnemySpawner"))
+            {
+                EnemySpawner e = target.GetComponent<EnemySpawner>();
+                if (e.isDestructible)
+                {
+                    //
+                }
             }
         }
     }

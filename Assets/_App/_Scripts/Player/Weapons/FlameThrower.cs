@@ -14,14 +14,18 @@ public class FlameThrower : MonoBehaviour
 
     public void FireFlameThrower(Vector2 direction)
     {
+        if(timerBetweenDealingDamage > timeBetweenDealingDamage)
+        {
+
+            
+
+        } else
+        {
+            timerBetweenDealingDamage += Time.deltaTime;
+        }
+
         if(timerBetweenSpawningParticle > timeBetweenSpawningParticle)
         {
-            /*
-            int rand = Random.Range(-1, -1);
-            direction.y += rand;
-            direction.x += rand;
-            */
-
             GameObject particle = flameParticlePool.GetPooledObject();
             if (particle != null)
             {
