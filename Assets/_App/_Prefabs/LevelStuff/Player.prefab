@@ -69,7 +69,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 30, y: 1}
+  m_Size: {x: 44, y: 1}
   m_EdgeRadius: 0
 --- !u!50 &1535711938087660903
 Rigidbody2D:
@@ -348,7 +348,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1535711938998100575}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -15, y: 0, z: 0}
+  m_LocalPosition: {x: -14, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1535711939498730313}
@@ -390,7 +390,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 20}
+  m_Size: {x: 1, y: 28}
   m_EdgeRadius: 0
 --- !u!50 &1535711938998100563
 Rigidbody2D:
@@ -470,7 +470,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1535711939424892734}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 15, y: 0, z: 0}
+  m_LocalPosition: {x: 14, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1535711939498730313}
@@ -512,7 +512,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 20}
+  m_Size: {x: 1, y: 28}
   m_EdgeRadius: 0
 --- !u!50 &1535711939424892722
 Rigidbody2D:
@@ -697,7 +697,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -411373661
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 16
   m_Sprite: {fileID: -483823221317588844, guid: b5bc90c993df79347ae58913dd7ae287,
     type: 3}
@@ -731,7 +731,7 @@ MonoBehaviour:
   timeTillDoubleJumpIsAllowed: 0.28
   controllerAxisMin: 0.35
   jumpParticleObjectPool: {fileID: 0}
-  timeForSingleButtonPress: 0.06
+  timeForSingleButtonPress: 0.18
   flameThrower: {fileID: 1535711939431026715}
   timeBetweenKnifeShots: 0.25
   flameThrowerPosMiddleLeft: {fileID: 1535711938139093697}
@@ -742,8 +742,8 @@ MonoBehaviour:
   flameThrowerPosDownRight: {fileID: 1535711938206776622}
   knifeFireParticlePool: {fileID: 0}
   knifePool: {fileID: 0}
-  timeBetweenFlashes: 0.16
   invulnerabilityTime: 2
+  maxHealth: 3
 --- !u!61 &1535711939498730319
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -790,6 +790,8 @@ MonoBehaviour:
   horizontalRaySpacing: 0
   verticalRaySpacing: 0
   boxCollider2D: {fileID: 0}
+  maxClimbAngle: 80
+  maxDescendAngle: 80
 --- !u!95 &1535711939498730307
 Animator:
   serializedVersion: 3
@@ -890,7 +892,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 30, y: 1}
+  m_Size: {x: 44, y: 1}
   m_EdgeRadius: 0
 --- !u!50 &1535711939607537196
 Rigidbody2D:

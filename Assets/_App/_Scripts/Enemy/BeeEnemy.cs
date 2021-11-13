@@ -95,7 +95,7 @@ public class BeeEnemy : Enemy
 
                 if(floatAbovePlayerTimer > floatAbovePlayerTime)
                 {
-                    if(timesSwitched > timeSwitchedBeforeAttack)
+                    if(timesSwitched >= timeSwitchedBeforeAttack)
                     {
                         //Attack!
                         StartCoroutine(WaitBeforeAttack());

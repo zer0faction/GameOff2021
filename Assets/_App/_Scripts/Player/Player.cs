@@ -50,6 +50,8 @@ public class Player : MonoBehaviour
 
     [Header("Taking Damage")]
     [SerializeField] private float invulnerabilityTime;
+    [SerializeField] private int maxHealth;
+    private int currentHealth;
     private bool canTakeDamage = true;
 
     // Physics
@@ -108,6 +110,8 @@ public class Player : MonoBehaviour
         //Debug.Log("jumpPower: " + jumpPower);
         //Debug.Log("acceleration: " + acceleration);
         //Debug.Log("deceleration: " + deceleration);
+
+        currentHealth = maxHealth;
     }
 
     private IEnumerator SetStateToMovingFromDamage()
@@ -223,6 +227,14 @@ public class Player : MonoBehaviour
                     currentState = State.Moving;
                     return; // ???
                 }
+
+                velocity.x = currentMoveSpeed;
+                oldVelocity = velocity;
+                velocity.y += gravity * Time.deltaTime;
+                deltaPosition = (oldVelocity + velocity) * 0.5f * Time.deltaTime;
+
+                break;
+            case State.Death:
 
                 velocity.x = currentMoveSpeed;
                 oldVelocity = velocity;
@@ -563,6 +575,22 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void RemoveHealth()
+    {
+        currentHealth--;
+        Debug.Log("HEALTH: " + currentHealth);
+        if(currentHealth == 0)
+        {
+            // Death
+            PlayerDies();
+        }
+    }
+
+    public void PlayerDies()
+    {
+        GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().RemoveContinue();
+    }
+
     public void TakeDamage() //True = right
     {
         if (canTakeDamage)
@@ -571,8 +599,6 @@ public class Player : MonoBehaviour
 
             StartCoroutine(BlinkCharacter());
             StartCoroutine(SetCanTakeDamageTrue());
-
-            //Health -- //TODO
 
             currentState = State.TakingDamageKnockback;
 
@@ -589,6 +615,8 @@ public class Player : MonoBehaviour
             velocity.y = jumpPower / 1.5f;
             reachedApex = false;
             canDoubleJump = false;
+
+            RemoveHealth();
         }
     }
 

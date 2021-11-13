@@ -25,6 +25,7 @@ public class Enemy : MonoBehaviour
     // Build-In Methods
     private void Start()
     {
+
     }
 
     public virtual void Update()

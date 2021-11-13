@@ -72,7 +72,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -917114817
-  m_SortingLayer: 5
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_Sprite: {fileID: 585679349008182817, guid: d33f1dd273b0039498f00d5053fb8f4e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -124,7 +124,7 @@ MonoBehaviour:
   spriteRenderer: {fileID: 516804081702302403}
   animator: {fileID: 0}
   playerPosition: {fileID: 0}
-  moveSpeedBase: 1.8
+  moveSpeedBase: 2.5
   gravity: -0.1
   controller: {fileID: 3640034202850890127}
 --- !u!61 &3719407767664851416
