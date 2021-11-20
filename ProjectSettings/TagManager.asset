@@ -13,6 +13,7 @@ TagManager:
   - EnemySpawner
   - Knife
   - KilledEnemyParticle
+  - PlantAttackObjectPool
   layers:
   - Default
   - TransparentFX
@@ -67,6 +68,9 @@ TagManager:
     locked: 0
   - name: Enemy
     uniqueID: 3377852479
+    locked: 0
+  - name: Water
+    uniqueID: 4285423477
     locked: 0
   - name: Particles
     uniqueID: 1415448501

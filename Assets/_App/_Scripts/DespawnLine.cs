@@ -15,7 +15,10 @@ public class DespawnLine : MonoBehaviour
             }
             else
             {
-                enemy.OnDeath();
+                if (enemy.despawnOnLineHit)
+                {
+                    enemy.OnDeath();
+                }
             }
         }
         if (collision.CompareTag("Knife"))

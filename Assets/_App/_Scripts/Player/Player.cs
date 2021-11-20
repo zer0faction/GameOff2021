@@ -54,6 +54,11 @@ public class Player : MonoBehaviour
     private int currentHealth;
     private bool canTakeDamage = true;
 
+    [Header("Misc")]
+    [SerializeField] private bool isMainMenu = false;
+    [SerializeField] private HealthUIController healthUiController;
+    private bool levelFinished = false;
+
     // Physics
     private Vector3 velocity;
     private Vector3 oldVelocity;
@@ -68,7 +73,9 @@ public class Player : MonoBehaviour
         Moving,
         Jumping,
         TakingDamageKnockback,
-        Death
+        Death,
+        WaitBeforeLevelStarts,
+        LevelEnded
     }
     private State currentState;
 
@@ -101,7 +108,13 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        currentState = State.Moving;
+        if (isMainMenu)
+        {
+            currentState = State.Moving;
+        } else
+        {
+            currentState = State.WaitBeforeLevelStarts;
+        }
         characterController = GetComponent<Controller2D>();
         animator = GetComponent<CustomPlayerAnimator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -117,6 +130,11 @@ public class Player : MonoBehaviour
     private IEnumerator SetStateToMovingFromDamage()
     {
         yield return new WaitForSeconds(.25f);
+        currentState = State.Moving;
+    }
+
+    public void StartGame()
+    {
         currentState = State.Moving;
     }
 
@@ -158,6 +176,15 @@ public class Player : MonoBehaviour
 
         switch (currentState)
         {
+            case State.WaitBeforeLevelStarts:
+
+                velocity.x = currentMoveSpeed;
+                oldVelocity = velocity;
+                velocity.y += gravity * Time.deltaTime;
+                deltaPosition = (oldVelocity + velocity) * 0.5f * Time.deltaTime;
+
+                break;
+
             case State.Moving:
 
                 CheckIfAnimationShouldBeJumping();
@@ -236,7 +263,17 @@ public class Player : MonoBehaviour
                 break;
             case State.Death:
 
-                velocity.x = currentMoveSpeed;
+                animator.ChangeAnimationState("Death", "Death");
+
+                velocity.x = 0;
+                oldVelocity = velocity;
+                velocity.y = 0;
+                deltaPosition = (oldVelocity + velocity) * 0.5f * Time.deltaTime;
+
+                break;
+            case State.LevelEnded:
+
+                velocity.x = maxMoveSpeed;
                 oldVelocity = velocity;
                 velocity.y += gravity * Time.deltaTime;
                 deltaPosition = (oldVelocity + velocity) * 0.5f * Time.deltaTime;
@@ -465,6 +502,13 @@ public class Player : MonoBehaviour
     private void FlipAnimationRightWay()
     {
         int rightLeft = GetRightLeft();
+
+        if (levelFinished)
+        {
+            spriteRenderer.flipX = false;
+            return;
+        }
+
         if (rightLeft == 1)
         {
             spriteRenderer.flipX = false;
@@ -578,8 +622,10 @@ public class Player : MonoBehaviour
     public void RemoveHealth()
     {
         currentHealth--;
-        Debug.Log("HEALTH: " + currentHealth);
-        if(currentHealth == 0)
+
+        healthUiController.SetHealth(currentHealth, true);
+
+        if (currentHealth == 0)
         {
             // Death
             PlayerDies();
@@ -588,6 +634,11 @@ public class Player : MonoBehaviour
 
     public void PlayerDies()
     {
+        currentState = State.Death;
+        currentMoveSpeed = 0;
+
+        healthUiController.SetHealth(0, true);
+
         GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().RemoveContinue();
     }
 
@@ -641,6 +692,23 @@ public class Player : MonoBehaviour
         if (!canTakeDamage)
         {
             StartCoroutine(BlinkCharacter());
+        }
+    }
+
+    public void OnLevelCleared()
+    {
+        if(currentHealth != 0)
+        {
+            levelFinished = true;
+            canTakeDamage = false;
+            currentState = State.LevelEnded;
+            GameObject[] gameObjects = GameObject.FindGameObjectsWithTag("Enemy");
+            foreach (GameObject g in gameObjects)
+            {
+                g.GetComponent<Enemy>().OnDeath();
+            }
+
+            GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().LevelCleared();
         }
     }
 }

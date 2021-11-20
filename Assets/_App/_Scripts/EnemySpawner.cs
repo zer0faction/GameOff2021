@@ -39,7 +39,7 @@ public class EnemySpawner : MonoBehaviour
             currentTime += Time.deltaTime;
             if (currentTime > timeBetweenSpawns)
             {
-                currentTime = 0;
+                currentTime = Random.Range(1,1.5f);
                 if (ignoreMaxEnemyCount)
                 {
                     StartCoroutine(SpawnEnemy(transform));
@@ -79,9 +79,12 @@ public class EnemySpawner : MonoBehaviour
         Debug.Log("Spawn multiple enemies once!");
         if (!alreadySpawnedEnemies)
         {
+
+
             alreadySpawnedEnemies = true;
             foreach(Transform t in transforms)
             {
+                Debug.Log("T" + t.gameObject.name);
                 StartCoroutine(SpawnEnemy(t));
             }
         }

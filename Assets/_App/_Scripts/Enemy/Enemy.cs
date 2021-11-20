@@ -6,7 +6,7 @@ public class Enemy : MonoBehaviour
 {
     [Header("Health Stuff.")]
     [SerializeField] private int maxHealth;
-    private int currentHealth;
+    public int currentHealth;
 
     [Header("Enemy Stats")]
     public bool isBoss;
@@ -14,13 +14,15 @@ public class Enemy : MonoBehaviour
     private bool canTakeDamageFromFireThrower = true;
 
     [Header("Other gameobjects, components, etc.")]
-    [SerializeField] private LayerMask layerMask;
-    [SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField] public LayerMask layerMask;
+    [SerializeField] public SpriteRenderer spriteRenderer;
     public EnemyAnimator animator;
     private ObjectPool onDeathParticlePool;
 
     // Other gameobjects
     [HideInInspector] public Transform playerPosition;
+
+    public bool despawnOnLineHit = true;
 
     // Build-In Methods
     private void Start()
@@ -59,7 +61,7 @@ public class Enemy : MonoBehaviour
     }
 
     // Methods for Health/Damage
-    public void RemoveHealth(int damage)
+    public virtual void RemoveHealth(int damage)
     {
         currentHealth -= damage;
         if(currentHealth <= 0)

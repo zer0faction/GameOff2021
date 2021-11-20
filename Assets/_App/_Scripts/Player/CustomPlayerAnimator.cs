@@ -49,6 +49,9 @@ public class CustomPlayerAnimator : MonoBehaviour
             case "TakeDamage":
                 animator.Play("TakeDamage");
                 break;
+            case "Death":
+                animator.Play("OnDeath");
+                break;
         }
     }
 

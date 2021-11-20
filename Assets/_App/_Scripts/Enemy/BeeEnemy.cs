@@ -40,8 +40,6 @@ public class BeeEnemy : Enemy
 
     public override void OnSpawn()
     {
-        Debug.Log("On Spawn called from Bee!");
-
         base.OnSpawn();
 
         floatAbovePlayerTimer = 0;
@@ -49,7 +47,7 @@ public class BeeEnemy : Enemy
         timeSwitchedBeforeAttack = Random.Range(0,2);
         timesSwitched = 0;
 
-        startingAttackSpeed = originalStartingAttackSpeed;
+        startingAttackSpeed = originalStartingAttackSpeed * 2;
 
         animator.SetAnimation("BeeIdle");
         controller.SetSpeed(floatAbovePlayerXSpeed);
@@ -99,9 +97,7 @@ public class BeeEnemy : Enemy
                     {
                         //Attack!
                         StartCoroutine(WaitBeforeAttack());
-                        currentState = state.BeforeAttack;
-                        animator.SetAnimation("BeeAngry");
-                        currentVector2 = new Vector2(0, 0);
+                       
                     } else
                     {
                         timesSwitched++;
@@ -133,16 +129,29 @@ public class BeeEnemy : Enemy
 
     private IEnumerator WaitBeforeAttack()
     {
+        currentState = state.BeforeAttack;
+        animator.SetAnimation("BeeAngry");
+        currentVector2 = new Vector2(0, 0);
+
         yield return new WaitForSeconds(1);
 
         // Set target to fly toward
-        currentVector2 = CalculateDirectionTowardsPlayer();
+        Vector2 v2 = CalculateDirectionTowardsPlayer();
+        currentVector2 = v2.normalized * 2;
         currentState = state.MoveTowardsPoint;
+
+
     }
 
     private void SwitchDirection()
     {
         currentVector2.x = -currentVector2.x;
+    }
+
+    public override void RemoveHealth(int damage)
+    {
+        base.RemoveHealth(damage);
+        
     }
 
     private bool CheckIfBeeWentOverPlayer()

@@ -73,7 +73,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -917114817
-  m_SortingLayer: 5
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_Sprite: {fileID: -6592310581204755526, guid: 76a4b0c2985858e46bee2c28090327b1,
     type: 3}
@@ -99,7 +99,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2fe5da05b5a4784299790130b3488f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 4
+  maxHealth: 3
+  currentHealth: 0
   isBoss: 0
   layerMask:
     serializedVersion: 2
@@ -107,6 +108,7 @@ MonoBehaviour:
   spriteRenderer: {fileID: 3201583738677484370}
   animator: {fileID: 8241023695091581899}
   playerPosition: {fileID: 0}
+  despawnOnLineHit: 1
   floatAbovePlayerXSpeed: 3
   originalStartingAttackSpeed: 1
   floatAbovePlayerTime: 1

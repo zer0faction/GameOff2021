@@ -1,0 +1,830 @@
+fileFormatVersion: 2
+guid: ce63737b169251848b727068138a416d
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 8074056435505558001
+    second: EnvironmentSprites3 v4 No Backgrounds (3)_0
+  - first:
+      213: 8684367519132484368
+    second: EnvironmentSprites3 v4 No Backgrounds (3)_1
+  - first:
+      213: -8445843423971000357
+    second: EnvironmentSprites3 v4 No Backgrounds (3)_2
+  - first:
+      213: 3175529757363120467
+    second: EnvironmentSprites3 v4 No Backgrounds (3)_3
+  - first:
+      213: -5470993662028595748
+    second: EnvironmentSprites3 v4 No Backgrounds (3)_4
+  - first:
+      213: -7127859485138167145
+    second: EnvironmentSprites3 v4 No Backgrounds (3)_5
+  - first:
+      213: 6525610556679901554
+    second: EnvironmentSprites3 v4 No Backgrounds (3)_6
+  - first:
+      213: -8095057067882812710
+    second: EnvironmentSprites3 v4 No Backgrounds (3)_7
+  - first:
+      213: 7877215488918208937
+    second: EnvironmentSprites3 v4 No Backgrounds (3)_8
+  - first:
+      213: 3877105275167678774
+    second: EnvironmentSprites3 v4 No Backgrounds (3)_9
+  - first:
+      213: 6136333255907851900
+    second: EnvironmentSprites3 v4 No Backgrounds (3)_10
+  - first:
+      213: 7664615124395955176
+    second: EnvironmentSprites3 v4 No Backgrounds (3)_11
+  - first:
+      213: 621730880042025315
+    second: EnvironmentSprites3 v4 No Backgrounds (3)_12
+  - first:
+      213: -2725179476884726590
+    second: EnvironmentSprites3 v4 No Backgrounds (3)_13
+  - first:
+      213: -1832579399866486641
+    second: EnvironmentSprites3 v4 No Backgrounds (3)_14
+  - first:
+      213: -7995518306064855028
+    second: EnvironmentSprites3 v4 No Backgrounds (3)_15
+  - first:
+      213: -8039185272780028662
+    second: EnvironmentSprites3 v4 No Backgrounds (3)_16
+  - first:
+      213: -7637450957471893539
+    second: EnvironmentSprites3 v4 No Backgrounds (3)_17
+  - first:
+      213: 5585577315109231262
+    second: EnvironmentSprites3 v4 No Backgrounds (3)_18
+  - first:
+      213: 698561587708944609
+    second: EnvironmentSprites3 v4 No Backgrounds (3)_19
+  - first:
+      213: 3423707396044046290
+    second: EnvironmentSprites3 v4 No Backgrounds (3)_20
+  - first:
+      213: -4514775054015617091
+    second: EnvironmentSprites3 v4 No Backgrounds (3)_21
+  - first:
+      213: 5476886200672538670
+    second: EnvironmentSprites3 v4 No Backgrounds (3)_22
+  - first:
+      213: -8234197789101546913
+    second: EnvironmentSprites3 v4 No Backgrounds (3)_23
+  - first:
+      213: 8333308656735707758
+    second: EnvironmentSprites3 v4 No Backgrounds (3)_24
+  - first:
+      213: 7794853638061758802
+    second: EnvironmentSprites3 v4 No Backgrounds (3)_25
+  - first:
+      213: 7157138385757298497
+    second: EnvironmentSprites3 v4 No Backgrounds (3)_0
+  - first:
+      213: -8173037810422602077
+    second: EnvironmentSprites3 v4 No Backgrounds (3)_1
+  - first:
+      213: -6449963868040296852
+    second: EnvironmentSprites3 v4 No Backgrounds (3)_2
+  - first:
+      213: 234394303738632278
+    second: EnvironmentSprites3 v4 No Backgrounds (3)_3
+  - first:
+      213: -9130226341016057650
+    second: EnvironmentSprites3 v4 No Backgrounds (3)_4
+  - first:
+      213: -1219542486432004366
+    second: EnvironmentSprites3 v4 No Backgrounds (3)_5
+  - first:
+      213: -6882727659465372793
+    second: EnvironmentSprites3 v4 No Backgrounds (3)_6
+  - first:
+      213: 7373794841348088869
+    second: EnvironmentSprites3 v4 No Backgrounds (3)_7
+  - first:
+      213: -1848600105066786824
+    second: EnvironmentSprites3 v4 No Backgrounds (3)_8
+  - first:
+      213: -4111431936432320176
+    second: EnvironmentSprites3 v4 No Backgrounds (3)_9
+  - first:
+      213: 3121489575727294805
+    second: EnvironmentSprites3 v4 No Backgrounds (3)_10
+  - first:
+      213: -4199260407454685339
+    second: EnvironmentSprites3 v4 No Backgrounds (3)_11
+  - first:
+      213: 6558328358704920302
+    second: EnvironmentSprites3 v4 No Backgrounds (3)_12
+  - first:
+      213: -2521171895146300609
+    second: EnvironmentSprites3 v4 No Backgrounds (3)_13
+  - first:
+      213: -5554783332060708124
+    second: EnvironmentSprites3 v4 No Backgrounds (3)_14
+  - first:
+      213: 4816891371317357799
+    second: EnvironmentSprites3 v4 No Backgrounds (3)_15
+  - first:
+      213: -325825468744866335
+    second: EnvironmentSprites3 v4 No Backgrounds (3)_16
+  - first:
+      213: 2399286798847109367
+    second: EnvironmentSprites3 v4 No Backgrounds (3)_17
+  - first:
+      213: 5607677011703724269
+    second: EnvironmentSprites3 v4 No Backgrounds (3)_18
+  - first:
+      213: 3778400772231873701
+    second: EnvironmentSprites3 v4 No Backgrounds (3)_19
+  - first:
+      213: 3286820936000202875
+    second: EnvironmentSprites3 v4 No Backgrounds (3)_20
+  - first:
+      213: -4125152373110904711
+    second: EnvironmentSprites3 v4 No Backgrounds (3)_21
+  - first:
+      213: 6981683405239204778
+    second: EnvironmentSprites3 v4 No Backgrounds (3)_22
+  - first:
+      213: -6244345696675937365
+    second: EnvironmentSprites3 v4 No Backgrounds (3)_23
+  - first:
+      213: 1642109075244096739
+    second: EnvironmentSprites3 v4 No Backgrounds (3)_24
+  - first:
+      213: 7764170832899309264
+    second: EnvironmentSprites3 v4 No Backgrounds (3)_25
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: 4
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: 4
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: 4
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: 4
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: EnvironmentSprites3 v4 No Backgrounds (3)_0
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 339
+        width: 18
+        height: 18
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 14f50631173435360800000000000000
+      internalID: 7157138385757298497
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnvironmentSprites3 v4 No Backgrounds (3)_1
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 339
+        width: 18
+        height: 18
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3a6acedf969839e80800000000000000
+      internalID: -8173037810422602077
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnvironmentSprites3 v4 No Backgrounds (3)_2
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 323
+        width: 18
+        height: 34
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c668a5f09002d76a0800000000000000
+      internalID: -6449963868040296852
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnvironmentSprites3 v4 No Backgrounds (3)_3
+      rect:
+        serializedVersion: 2
+        x: 115
+        y: 309
+        width: 56
+        height: 40
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 65857bb906cb04300800000000000000
+      internalID: 234394303738632278
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnvironmentSprites3 v4 No Backgrounds (3)_4
+      rect:
+        serializedVersion: 2
+        x: 184
+        y: 265
+        width: 39
+        height: 87
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ec8c2d0548bea4180800000000000000
+      internalID: -9130226341016057650
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnvironmentSprites3 v4 No Backgrounds (3)_5
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 261
+        width: 46
+        height: 70
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2f649bbe190531fe0800000000000000
+      internalID: -1219542486432004366
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnvironmentSprites3 v4 No Backgrounds (3)_6
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 304
+        width: 18
+        height: 34
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 78b8fc3f8a3ab70a0800000000000000
+      internalID: -6882727659465372793
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnvironmentSprites3 v4 No Backgrounds (3)_7
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 304
+        width: 18
+        height: 18
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5242925175bf45660800000000000000
+      internalID: 7373794841348088869
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnvironmentSprites3 v4 No Backgrounds (3)_8
+      rect:
+        serializedVersion: 2
+        x: 226
+        y: 265
+        width: 39
+        height: 72
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8ff8ebdaff37856e0800000000000000
+      internalID: -1848600105066786824
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnvironmentSprites3 v4 No Backgrounds (3)_9
+      rect:
+        serializedVersion: 2
+        x: 269
+        y: 265
+        width: 39
+        height: 47
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 05151c6ef6241f6c0800000000000000
+      internalID: -4111431936432320176
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnvironmentSprites3 v4 No Backgrounds (3)_10
+      rect:
+        serializedVersion: 2
+        x: 62
+        y: 261
+        width: 46
+        height: 33
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5596f431b32c15b20800000000000000
+      internalID: 3121489575727294805
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnvironmentSprites3 v4 No Backgrounds (3)_11
+      rect:
+        serializedVersion: 2
+        x: 117
+        y: 261
+        width: 56
+        height: 40
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5672d4678ea39b5c0800000000000000
+      internalID: -4199260407454685339
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnvironmentSprites3 v4 No Backgrounds (3)_12
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 213
+        width: 13
+        height: 43
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ee63afc05ecd30b50800000000000000
+      internalID: 6558328358704920302
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnvironmentSprites3 v4 No Backgrounds (3)_13
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 213
+        width: 12
+        height: 43
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f3b3b14e48ff20dd0800000000000000
+      internalID: -2521171895146300609
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnvironmentSprites3 v4 No Backgrounds (3)_14
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 241
+        width: 47
+        height: 10
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4e2c2407df179e2b0800000000000000
+      internalID: -5554783332060708124
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnvironmentSprites3 v4 No Backgrounds (3)_15
+      rect:
+        serializedVersion: 2
+        x: 183
+        y: 198
+        width: 34
+        height: 46
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ece3056e2909d240800000000000000
+      internalID: 4816891371317357799
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnvironmentSprites3 v4 No Backgrounds (3)_16
+      rect:
+        serializedVersion: 2
+        x: 232
+        y: 196
+        width: 25
+        height: 46
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1e5efa4667f6a7bf0800000000000000
+      internalID: -325825468744866335
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnvironmentSprites3 v4 No Backgrounds (3)_17
+      rect:
+        serializedVersion: 2
+        x: 61
+        y: 219
+        width: 64
+        height: 14
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7f8e09fa1aafb4120800000000000000
+      internalID: 2399286798847109367
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnvironmentSprites3 v4 No Backgrounds (3)_18
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 191
+        width: 35
+        height: 48
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: de879b9088872dd40800000000000000
+      internalID: 5607677011703724269
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnvironmentSprites3 v4 No Backgrounds (3)_19
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 184
+        width: 26
+        height: 23
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a441f7cb739f6430800000000000000
+      internalID: 3778400772231873701
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnvironmentSprites3 v4 No Backgrounds (3)_20
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 88
+        width: 39
+        height: 87
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b78eb9a1a322d9d20800000000000000
+      internalID: 3286820936000202875
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnvironmentSprites3 v4 No Backgrounds (3)_21
+      rect:
+        serializedVersion: 2
+        x: 62
+        y: 88
+        width: 39
+        height: 72
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9786d5cc5c380c6c0800000000000000
+      internalID: -4125152373110904711
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnvironmentSprites3 v4 No Backgrounds (3)_22
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 89
+        width: 39
+        height: 47
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aabb587011ce3e060800000000000000
+      internalID: 6981683405239204778
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnvironmentSprites3 v4 No Backgrounds (3)_23
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 84
+        width: 39
+        height: 87
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ba344ee3ca0a759a0800000000000000
+      internalID: -6244345696675937365
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnvironmentSprites3 v4 No Backgrounds (3)_24
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 84
+        width: 39
+        height: 72
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3ec9e50f081f9c610800000000000000
+      internalID: 1642109075244096739
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnvironmentSprites3 v4 No Backgrounds (3)_25
+      rect:
+        serializedVersion: 2
+        x: 238
+        y: 84
+        width: 39
+        height: 47
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0de79667c30efbb60800000000000000
+      internalID: 7764170832899309264
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

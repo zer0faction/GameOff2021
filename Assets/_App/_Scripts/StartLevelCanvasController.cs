@@ -15,11 +15,12 @@ public class StartLevelCanvasController : MonoBehaviour
     [SerializeField] private GameObject UIToPutInactiveOne;
     [SerializeField] private TextMeshProUGUI GoText;
 
+    private Player player;
+
     private void Start()
     {
-        lives = 1; //GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().continues;
-
-        Debug.Log("Start");
+        lives = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().continues;
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
 
         GoText.text = "";
         stageText.text = "Stage " + level;
@@ -32,10 +33,11 @@ public class StartLevelCanvasController : MonoBehaviour
     {
         yield return new WaitForSeconds(2.5f);
 
-        Debug.Log("Wtf");
         UIToPutInactiveOne.SetActive(false);
 
         float time = 1.5f;
+
+        player.StartGame();
 
         GoText.text = "GO !!!";
         yield return new WaitForSeconds(time);
