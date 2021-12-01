@@ -116,7 +116,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 207b8cd1338491344be2c0efc770db94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 6
+  maxHealth: 5
   currentHealth: 0
   isBoss: 0
   layerMask:
@@ -124,6 +124,7 @@ MonoBehaviour:
     m_Bits: 2048
   spriteRenderer: {fileID: 4262882682979446270}
   animator: {fileID: 0}
+  onDeathParticlePool: {fileID: 0}
   playerPosition: {fileID: 0}
   despawnOnLineHit: 0
   realAnimator: {fileID: 4262882682979446269}

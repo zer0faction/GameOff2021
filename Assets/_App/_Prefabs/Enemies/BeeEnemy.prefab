@@ -107,6 +107,7 @@ MonoBehaviour:
     m_Bits: 2048
   spriteRenderer: {fileID: 3201583738677484370}
   animator: {fileID: 8241023695091581899}
+  onDeathParticlePool: {fileID: 0}
   playerPosition: {fileID: 0}
   despawnOnLineHit: 1
   floatAbovePlayerXSpeed: 3
