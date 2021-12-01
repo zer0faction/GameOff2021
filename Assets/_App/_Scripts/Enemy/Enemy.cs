@@ -5,7 +5,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     [Header("Health Stuff.")]
-    [SerializeField] private int maxHealth;
+    [SerializeField] public int maxHealth;
     public int currentHealth;
 
     [Header("Enemy Stats")]
@@ -17,7 +17,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] public LayerMask layerMask;
     [SerializeField] public SpriteRenderer spriteRenderer;
     public EnemyAnimator animator;
-    private ObjectPool onDeathParticlePool;
+    public ObjectPool onDeathParticlePool;
 
     // Other gameobjects
     [HideInInspector] public Transform playerPosition;
@@ -37,7 +37,7 @@ public class Enemy : MonoBehaviour
 
     // Other Methods
 
-    private void CheckCollisions()
+    public virtual void CheckCollisions()
     {
         RaycastHit2D hit = Physics2D.Raycast(transform.position, new Vector2(.002f, .002f), 1, layerMask); //Distance = 2 Pixels
         if (hit.collider != null)

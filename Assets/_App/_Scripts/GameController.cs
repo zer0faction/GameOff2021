@@ -74,8 +74,16 @@ public class GameController : MonoBehaviour
         currentLevel++;
 
         //if(level > hoeveel levels er zijn){}
+        if(currentLevel > 2)
+        {
+            currentLevel = 0;
+            continues = startingContinues;
+            StartCoroutine(LoadMainMenu());
 
-        StartCoroutine(LoadCurrentLevel());
+        } else
+        {
+            StartCoroutine(LoadCurrentLevel());
+        }
     }
 
     public void AddContinue()
@@ -89,6 +97,10 @@ public class GameController : MonoBehaviour
         if(continues < 0)
         {
             //Out of continues, have to restart the whole game.
+            currentLevel = 0;
+            continues = startingContinues;
+            StartCoroutine(LoadMainMenu());
+
         } else
         {
             //Restart the current Level.
@@ -127,6 +139,25 @@ public class GameController : MonoBehaviour
             GameObject player = GameObject.FindGameObjectWithTag("Player");
             player.transform.position = new Vector3(xPosCheckpointSpawn, yPosCheckpointSpawn, 0);
         }
+
+        makeScreenBlackAnimator.Play("BlackScreenThingyFadeIn");
+        yield return new WaitForSeconds(.98f);
+        makeScreenBlackAnimator.Play("NothingHappens");
+    }
+
+    private IEnumerator LoadMainMenu()
+    {
+        yield return new WaitForSeconds(.98f);
+        makeScreenBlackAnimator.Play("BlackScreenThingy");
+        yield return new WaitForSeconds(.98f);
+
+        SceneManager.LoadSceneAsync(0);
+        while (SceneManager.GetActiveScene().buildIndex != currentLevel)
+        {
+            yield return null;
+        }
+
+        yield return new WaitForSeconds(.1f);
 
         makeScreenBlackAnimator.Play("BlackScreenThingyFadeIn");
         yield return new WaitForSeconds(.98f);

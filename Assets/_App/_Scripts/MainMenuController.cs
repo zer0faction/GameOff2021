@@ -8,6 +8,8 @@ public class MainMenuController : MonoBehaviour
 
     private void Start()
     {
+        GameObject.FindGameObjectWithTag("music").GetComponent<MusicController>().SetMusicTrack(0);
+
         gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
     }
 

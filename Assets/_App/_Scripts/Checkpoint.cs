@@ -6,6 +6,9 @@ public class Checkpoint : MonoBehaviour
 {
     private GameController gameController;
     [SerializeField] private Transform position;
+    [SerializeField] private GameObject particle;
+
+    private bool playedAnimation = false;
 
     private void Start()
     {
@@ -20,6 +23,11 @@ public class Checkpoint : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
+            if (!playedAnimation)
+            {
+                Instantiate(particle, transform.position, Quaternion.identity);
+                playedAnimation = true;
+            }
             gameController.SetStartfromCheckpointToTrue();
             gameController.SetCheckpointTransform(position);
         }

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Knife : MonoBehaviour
 {
+    private AudioSource audioSource;
+
     private Vector2 velocity;
     [SerializeField] private float speed = 4;
     [SerializeField] private int damage = 1;
@@ -19,6 +21,8 @@ public class Knife : MonoBehaviour
 
     public void OnActivate(Vector2 direction)
     {
+        //audioSource.Play();
+
         bool x = true;
         float y = 0;
         if(direction.x == 1)

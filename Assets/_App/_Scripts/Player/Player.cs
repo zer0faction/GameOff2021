@@ -57,6 +57,7 @@ public class Player : MonoBehaviour
     [Header("Misc")]
     [SerializeField] private bool isMainMenu = false;
     [SerializeField] private HealthUIController healthUiController;
+    [SerializeField] private AudioSource audioSource;
     private bool levelFinished = false;
 
     // Physics
@@ -646,6 +647,8 @@ public class Player : MonoBehaviour
     {
         if (canTakeDamage)
         {
+            audioSource.Play();
+
             canTakeDamage = false;
 
             StartCoroutine(BlinkCharacter());
